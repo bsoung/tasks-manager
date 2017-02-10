@@ -16,6 +16,6 @@ export default {
 
 		} 
 		
-		return <Time value={ date } format="MMM DD, YYYY" />
+		return <span>on <Time value={ date } format="MMM DD, YYYY" /></span>
 	}
 }

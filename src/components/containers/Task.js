@@ -74,7 +74,7 @@ class Task extends Component {
 					<article style={{background: '#f9f9f9', border: '1px solid #ddd', padding: 16}}>
 						Category is <strong>{ TextUtils.capitalize(task.category) }</strong> 
 						<br />
-						Posted by <strong>{ task.profile.username }</strong> on {DateUtils.formattedDate(task.timestamp)}
+						Posted by <strong>{ task.profile.username }</strong> {DateUtils.formattedDate(task.timestamp)}
 						<br />
 					
 						<hr />

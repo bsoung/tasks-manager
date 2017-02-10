@@ -13,8 +13,6 @@ class Categories extends Component {
 		return (
 
 				<div className="inner">
-
-					{/* Menu */}
 					<nav id="menu">
 						<header className="major">
 							<h2>Categories</h2>
