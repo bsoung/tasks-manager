@@ -17,7 +17,6 @@ class Task extends Component {
 
 	onSubmitMessage(e) {
 		e.preventDefault();
-		console.log(this.state.message);
 
 		let updated = Object.assign({}, this.state.message);
 
@@ -38,16 +37,18 @@ class Task extends Component {
 				// send a notification to the task creator
 				const params = {
 					recipient: task.profile.id,
-					text: updated.text
+					text: updated.text,
+					sender: updated.profile.username
 				}
 
 				return this.props.notify(params);
 			})
 			.then(response => {
-				alert('Thanks for replying!');
+				// alert('Thanks for replying!');
+				swal("Message Sent",`You have sent a text message to ${params.sender}!`,"success");
 			})
 			.catch(err => {
-				console.log(err, 'err');
+				console.error(err, 'err');
 			});
 	}
 

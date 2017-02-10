@@ -75,8 +75,6 @@ router.post('/notify', function(req, res, next) {
 });
 
 router.post('/task', function(req, res, next) {
-   	console.log('Message Acknowledged!: ' + JSON.stringify(req.body));
-
     var message = req.body['Body'];
 
     // Title. Category. Task description.
