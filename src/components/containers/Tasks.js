@@ -3,6 +3,7 @@ import { Authenticate } from '../view';
 import { connect} from 'react-redux';
 import actions from '../../actions';
 import { Link } from 'react-router';
+import { DateUtils } from '../../utils';
 
 class Tasks extends Component {
 	constructor() {
@@ -74,6 +75,7 @@ class Tasks extends Component {
 
 	render() {
 		const taskList = this.props.tasks[this.props.tasks.selectedCategory];
+		
 		return (		
 				<section id="banner">		
 					<div className="content">
@@ -83,11 +85,19 @@ class Tasks extends Component {
 						{
 							taskList == null ? null :
 								taskList.map((task) => {
+									const username = task.profile.username || 'anonymous';
 									return (
+									
 										<div key={task.id} className="box">
 											<Link to={'/task/' + task.id}>
 												<h3>{task.title}</h3>
 											</Link>
+
+											<span style={ localStyle.detailText }>{ DateUtils.formattedDate(task.timestamp) }</span>
+												
+											<span style={ localStyle.pipe }>|</span>
+
+											<span style={ localStyle.detailText }>{ username }</span>
 
 											<Link to={'/task/' + task.id}>
 												{task.description}
@@ -108,6 +118,17 @@ class Tasks extends Component {
 			
 
 		);
+	}
+}
+
+const localStyle = {
+	detailText: {
+		float: 'right'
+	},
+	pipe: {
+		float: 'right',
+		marginLeft: 12,
+		marginRight: 12
 	}
 }
 
