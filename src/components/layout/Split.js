@@ -5,11 +5,8 @@ export default (props) => {
 	return (
 
 			<div id="wrapper">
-
-				{/* Main */}
 					<div id="main">
 						<div className="inner">
-							{/* Header */}
 								<header id="header">
 									<a href="index.html" className="logo">Tasks Manager</a>
 									<ul className="icons">

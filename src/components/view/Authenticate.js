@@ -4,7 +4,6 @@ class Authenticate extends Component {
 	constructor() {
 		super();
 
-		// TODO: should go in container
 		this.state = {
 			credentials: {
 				username: '',
@@ -16,7 +15,6 @@ class Authenticate extends Component {
 	}
 
 	updateCredentials(field, e) {
-		// console.log('updateCredentials: ' + field + ' == ' + e.target.value);
 		let updated = Object.assign({}, this.state.credentials);
 		updated[field] = e.target.value;
 		this.setState({
@@ -25,12 +23,40 @@ class Authenticate extends Component {
 	}
 
 	register(e) {
-		// console.log('register: ' + JSON.stringify(this.state.credentials));
+		if (this.state.credentials.username.length == 0) {
+			swal("Oops...","You forgot the username!","error");
+			return;
+		}
+
+		if (this.state.credentials.phone.length == 0) {
+			swal("Oops...","You forgot the phone number!","error");
+			return;
+		}
+
+		if (this.state.credentials.email.length == 0) {
+			swal("Oops...","You forgot the email!","error");
+			return;
+		}
+
+		if (this.state.credentials.password.length == 0) {
+			swal("Oops...","You forgot the password!","error");
+			return;
+		}
+
 		this.props.onRegister(this.state.credentials);
 	}
 
 	login(e) {
-		// console.log('login: ' + JSON.stringify(this.state.credentials));
+		if (this.state.credentials.username.length == 0) {
+			swal("Oops...","You forgot the email!","error");
+			return;
+		}
+
+		if (this.state.credentials.password.length == 0) {
+			swal("Oops...","You forgot the password!","error");
+			return;
+		}
+
 		this.props.onLogin(this.state.credentials);
 	}
 
