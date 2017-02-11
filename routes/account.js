@@ -29,7 +29,7 @@ router.get('/:action', function(req, res, next) {
 		// verify token:
 		jwt.verify(req.session.token, process.env.TOKEN_SECRET, function(err, decoded) {
 			if (err) {
-				delete req.session.token;
+				req.session.token.reset();
 
 				res.json({
 					confirmation: 'fail',

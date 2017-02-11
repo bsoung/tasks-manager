@@ -74,6 +74,10 @@ class Tasks extends Component {
 	}
 
 	render() {
+		if (this.props.user == null) {
+			console.log("USER IS NULL");
+		}
+
 		const taskList = this.props.tasks[this.props.tasks.selectedCategory];
 
 		return (		
@@ -108,13 +112,19 @@ class Tasks extends Component {
 									)
 								})
 						}
-
-						
 					</div>
-					<Authenticate 
-						onLogin={this.login.bind(this)} 
-						onRegister={this.register.bind(this)} 
-					/>
+
+					{
+						this.props.user == null ?
+						<Authenticate 
+							onLogin={this.login.bind(this)} 
+							onRegister={this.register.bind(this)} 
+						/>
+						: <div>
+							<h2>Hello {this.props.user.username}</h2>
+							<Link to={"/profile/" + this.props.user.id}>Profile page</Link>
+						  </div>	
+					}
 		
 				</section>
 			
@@ -136,7 +146,8 @@ const localStyle = {
 
 const mapStateToProps = (state) => {
 	return {
-		tasks: state.task
+		tasks: state.task,
+		user: state.account.user
 	}
 }
 

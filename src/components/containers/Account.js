@@ -38,7 +38,6 @@ class Account extends Component {
 	}
 
 	render() {
-		console.log(this.props.user.id, "this is user id")
 		return (
 			<div style={{padding: 24}}>
 				<h2>Account</h2>
