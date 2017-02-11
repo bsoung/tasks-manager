@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
 			let taskId = action.params.task;
 			updated[taskId] = action.payload
 
-
+			console.log("MESSAGES_RECEIVED");
 			return updated;
 
 		default:
