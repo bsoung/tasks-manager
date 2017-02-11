@@ -31,7 +31,8 @@ router.get('/notify', function(req, res, next) {
 });
 
 router.post('/notify', function(req, res, next) {
-    console.log(JSON.stringify(req.body));
+    console.log("THIS IS THE REQ BODY", req.body);
+    var username = req.body.username || 'Somebody';
 
     if (req.body.recipient == null) {
         res.json({
@@ -54,7 +55,7 @@ router.post('/notify', function(req, res, next) {
     controllers.profile
         .getById(req.body.recipient, false) // get profile first
         .then(function(profile) {
-            var msg = 'Someone replied to your task, here is the message:\n\n' + req.body.text;
+            var msg = username + ' replied to your task, here is the message:\n\n' + req.body.text;
 
             return utils.TwilioManager.sendSMS(profile.phone, msg);
         })
@@ -104,7 +105,6 @@ router.post('/task', function(req, res, next) {
     }
 
     var senderNumber = req.body['From'].replace('+1', ''); // US only
-    console.log(senderNumber, "THIS IS THE SENDER NUMBER!!!!")
 
     controllers.profile
         .get({ phone: senderNumber }, false)

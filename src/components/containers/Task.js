@@ -21,10 +21,11 @@ class Task extends Component {
 		let updated = Object.assign({}, this.state.message);
 
 		const user = this.props.user;
+		const username = user.username || 'a user';
 
 		updated['profile'] = {
 			id: user.id,
-			username: user.username
+			username
 		};
 
 		updated['task'] = this.props.params.id;
@@ -38,14 +39,14 @@ class Task extends Component {
 				const params = {
 					recipient: task.profile.id,
 					text: updated.text,
-					sender: user.username
+					username
 				}
 
 				return this.props.notify(params);
 			})
 			.then(response => {
 				// alert('Thanks for replying!');
-				swal("Message Sent",`You have sent a text message to ${params.sender}!`,"success");
+				swal("Message Sent",`You have sent a text message to ${username}!`,"success");
 			})
 			.catch(err => {
 				console.error(err, 'err');
