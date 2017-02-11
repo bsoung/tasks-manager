@@ -6,25 +6,39 @@ import actions from '../../actions';
 class Profile extends Component {
 	componentDidMount() {
 		const id = this.props.params.id;
+
 		this.props.fetchProfile(id);
 	}
 
 	render() {
-		return (
-			<div>
-				Profile Container
-				<h2>{this.props.user.username}'s profile</h2>
+		let profile = this.props.profiles;
 
-				{this.props.user.email}
-			</div>
-		);
+		if (profile == null) {
+			return <div>Not Found</div>
+
+		} else if (profile[this.props.params.id] == null){
+			return <div>Not Found</div>
+
+		} else {
+
+			profile = profile[this.props.params.id];
+
+			return (
+				<div>
+					Profile Container
+					<h2>{profile.username}'s profile</h2>
+
+					{profile.email}     
+				</div>
+			);
+		}
+		
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
-		message: state.message,
-		user: state.account.user
+		profiles: state.profile
 	}
 }
 
