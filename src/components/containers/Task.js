@@ -10,8 +10,6 @@ class Task extends Component {
 		super();
 
 		this.state = {
-			fetchData: true,
-			loop: false,
 			message: {
 				text: ''
 			}
@@ -23,30 +21,23 @@ class Task extends Component {
 			return;
 		}
 
-		this.props.fetchMessages({task: this.props.params.id});
+		// this.props.fetchMessages({task: this.props.params.id});
+		this.updateMessages();
 	}
 
-	fetchMessagesInSeconds(seconds) {
-		setTimeout(() => {
-			this.props.fetchMessages({task: this.props.params.id});
+	// refreshing comments section
+	updateMessages(seconds) {
+		this.props.fetchMessages({task: this.props.params.id})
+			.then(response => {
+				setTimeout(() => {
+					this.updateMessages();
 
-			this.setState({
-				loop: false
+				}, 3*1000)
 			})
-
-		}, 1000 * seconds)
-	}
-
-	componentDidUpdate() {
-		// check if loop is false
-		
-		if (this.state.loop == false) {
-			this.setState({
-				loop: true
+			.catch(err => {
+				console.log(err);
 			});
-
-			this.fetchMessagesInSeconds(3);
-		}
+	
 	}
 
 	onSubmitMessage(e) {
