@@ -5,7 +5,7 @@ import actions from '../../actions';
 class Categories extends Component {
 	onSelectCategory(category, e) {
 		e.preventDefault();
-		console.log("selected?")
+
 		this.props.selectCategory(category);
 	}
 

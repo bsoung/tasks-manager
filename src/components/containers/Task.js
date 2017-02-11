@@ -61,7 +61,7 @@ class Task extends Component {
 			message: updated
 		});
 	}
-	//
+
 	render() {
 		const taskId = this.props.params.id;
 		const task = this.props.tasks[taskId];

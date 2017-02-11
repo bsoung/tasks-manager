@@ -12,20 +12,6 @@ class Tasks extends Component {
 		this.getTasks = this.getTasks.bind(this);
 	}
 
-	getTasks() {
-		if (this.props.tasks[this.props.tasks.selectedCategory] != null) {
-			return;
-		}
-
-		this.props.fetchTasks({category: this.props.tasks.selectedCategory})
-		.then(results => {
-
-		})
-		.catch(err => {
-			alert(err);
-		});
-	}
-
 	componentDidMount() {
 		this.getTasks();
 
@@ -45,6 +31,20 @@ class Tasks extends Component {
 
 	componentDidUpdate() {
 		this.getTasks();
+	}
+
+	getTasks() {
+		if (this.props.tasks[this.props.tasks.selectedCategory] != null) {
+			return;
+		}
+
+		this.props.fetchTasks({category: this.props.tasks.selectedCategory})
+		.then(results => {
+
+		})
+		.catch(err => {
+			alert(err);
+		});
 	}
 
 	createTask(task) {
@@ -75,7 +75,7 @@ class Tasks extends Component {
 
 	render() {
 		const taskList = this.props.tasks[this.props.tasks.selectedCategory];
-		
+
 		return (		
 				<section id="banner">		
 					<div className="content">

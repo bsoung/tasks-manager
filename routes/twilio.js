@@ -31,7 +31,6 @@ router.get('/notify', function(req, res, next) {
 });
 
 router.post('/notify', function(req, res, next) {
-    console.log("THIS IS THE REQ BODY", req.body);
     var username = req.body.username || 'Somebody';
 
     if (req.body.recipient == null) {
@@ -55,7 +54,13 @@ router.post('/notify', function(req, res, next) {
     controllers.profile
         .getById(req.body.recipient, false) // get profile first
         .then(function(profile) {
-            var msg = username + ' replied to your task, here is the message:\n\n' + req.body.text;
+            var msg = 
+                username 
+                + ' replied to your task, here is the message:\n\n' 
+                + req.body.text 
+                + '. View ' 
+                + username 
+                + '\'s profile here: https://tasks-manager-bs.herokuapp.com/';
 
             return utils.TwilioManager.sendSMS(profile.phone, msg);
         })
@@ -104,7 +109,7 @@ router.post('/task', function(req, res, next) {
         description: description
     }
 
-    var senderNumber = req.body['From'].replace('+1', ''); // US only
+    var senderNumber = req.body['From'].replace('+1', ''); 
 
     controllers.profile
         .get({ phone: senderNumber }, false)

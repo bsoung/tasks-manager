@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
 
 	switch (action.type) {
 		case constants.TASKS_RECEIVED:
-			// console.log(action.params, "ACTION PARAMS")
 
 			const keys = Object.keys(action.params);
 			keys.forEach(key => {

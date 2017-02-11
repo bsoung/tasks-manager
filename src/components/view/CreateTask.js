@@ -30,7 +30,6 @@ class CreateTask extends Component {
 	}
 
 	render() {
-
 		return (
 			<div>
 				<h2>Create Task</h2>
