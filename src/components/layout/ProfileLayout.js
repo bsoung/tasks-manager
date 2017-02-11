@@ -5,7 +5,7 @@ export default (props) => {
 		return (
 			<div>
 				This is the profile layout
-				<Profile {...this.props}/>	
+				<Profile {...props} />	
 			</div>
 
 		);
