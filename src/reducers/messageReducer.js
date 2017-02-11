@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
 
 	switch (action.type) {
 		case constants.MESSAGES_RECEIVED:
-
+			console.log("MESSAGES_RECEIVED")
 			let taskId = action.params.task;
 			updated[taskId] = action.payload
 			return updated;
