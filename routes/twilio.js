@@ -51,14 +51,16 @@ router.post('/notify', function(req, res, next) {
         return;
     }
 
+    // get profile first
     controllers.profile
-        .getById(req.body.recipient, false) // get profile first
+        .getById(req.body.recipient, false) 
         .then(function(profile) {
             var msg = 
                 username 
                 + ' replied to your task, here is the message:\n\n' 
                 + req.body.text 
-                + '. View ' 
+                + '\n\n'
+                + 'View ' 
                 + username 
                 + '\'s profile here: https://tasks-manager-bs.herokuapp.com/';
 
