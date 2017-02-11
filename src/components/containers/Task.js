@@ -12,18 +12,27 @@ class Task extends Component {
 		this.state = {
 			message: {
 				text: ''
-			}
+			},
+			messagesLoaded: false
 		};
 	}
 
 	componentDidMount() {
 		const taskId = this.props.params.id;
 
-		if (this.props.message[taskId] != null) {
+		if (this.state.messagesLoaded) {
 			return;
 		}
 
-		this.props.fetchMessages({task: taskId});
+		this.props.fetchMessages({task: taskId})
+			.then(response => {
+				this.setState({
+					messagesLoaded: true
+				});
+			})
+			.catch(err => {
+				console.log(err)
+			});
 			
 	}
 
