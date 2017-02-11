@@ -7,7 +7,7 @@ export default (props) => {
 					<div id="main">
 						<div className="inner">
 								<header id="header">
-									<a href="#" className="logo">Tasks Manager</a>
+									<a className="logo">Tasks Manager - Manage daily tasks via texting!</a>
 									<ul className="icons">
 										<li><a href="#" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
 										<li><a href="#" className="icon fa-facebook"><span className="label">Facebook</span></a></li>

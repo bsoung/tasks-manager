@@ -10,30 +10,43 @@ class Task extends Component {
 		super();
 
 		this.state = {
+			fetchData: true,
+			loop: false,
 			message: {
 				text: ''
-			},
-			messagesLoaded: false
+			}
 		};
 	}
 
 	componentDidMount() {
-		const taskId = this.props.params.id;
-
-		if (this.state.messagesLoaded) {
+		if (this.props.message[this.props.params.id] != null) {
 			return;
 		}
 
-		this.props.fetchMessages({task: taskId})
-			.then(response => {
-				this.setState({
-					messagesLoaded: true
-				});
+		this.props.fetchMessages({task: this.props.params.id});
+	}
+
+	fetchMessagesInSeconds(seconds) {
+		setTimeout(() => {
+			this.props.fetchMessages({task: this.props.params.id});
+
+			this.setState({
+				loop: false
 			})
-			.catch(err => {
-				console.log(err)
+
+		}, 1000 * seconds)
+	}
+
+	componentDidUpdate() {
+		// check if loop is false
+		
+		if (this.state.loop == false) {
+			this.setState({
+				loop: true
 			});
-			
+
+			this.fetchMessagesInSeconds(3);
+		}
 	}
 
 	onSubmitMessage(e) {
@@ -74,8 +87,6 @@ class Task extends Component {
 	}
 
 	updateMessage(e) {
-		e.preventDefault();
-
 		let updated = Object.assign({}, this.state.message);
 		updated['text'] = e.target.value;
 
