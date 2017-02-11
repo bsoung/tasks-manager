@@ -15,6 +15,8 @@ class Authenticate extends Component {
 	}
 
 	updateCredentials(field, e) {
+		e.preventDefault();
+
 		let updated = Object.assign({}, this.state.credentials);
 		updated[field] = e.target.value;
 		
@@ -24,6 +26,8 @@ class Authenticate extends Component {
 	}
 
 	register(e) {
+		e.preventDefault();
+
 		if (this.state.credentials.username.length == 0) {
 			swal("Oops...","You forgot the username!","error");
 			return;
@@ -48,6 +52,8 @@ class Authenticate extends Component {
 	}
 
 	login(e) {
+		e.preventDefault();
+		
 		if (this.state.credentials.email.length == 0) {
 			swal("Oops...","You forgot the email!","error");
 			return;

@@ -74,9 +74,6 @@ class Tasks extends Component {
 	}
 
 	render() {
-		if (this.props.user == null) {
-			console.log("USER IS NULL");
-		}
 
 		const taskList = this.props.tasks[this.props.tasks.selectedCategory];
 

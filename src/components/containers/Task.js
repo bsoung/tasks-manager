@@ -12,7 +12,15 @@ class Task extends Component {
 			message: {
 				text: ''
 			}
+		
 		};
+	}
+
+	componentDidMount() {
+		const taskId = this.props.params.id;
+
+		this.props.fetchMessages({task: taskId});
+			
 	}
 
 	onSubmitMessage(e) {
@@ -54,6 +62,8 @@ class Task extends Component {
 	}
 
 	updateMessage(e) {
+		e.preventDefault();
+
 		let updated = Object.assign({}, this.state.message);
 		updated['text'] = e.target.value;
 
@@ -65,6 +75,7 @@ class Task extends Component {
 	render() {
 		const taskId = this.props.params.id;
 		const task = this.props.tasks[taskId];
+		const messages = this.props.messages[taskId];
 
 		return (
 
@@ -84,6 +95,26 @@ class Task extends Component {
 						<p>{ task.description }</p>
 					</article>
 				</div>
+
+				<h3>Replies</h3>
+				<ul>
+					{
+						messages == null ? '' :
+						messages.map(message => {
+							return (
+								<li key={message.id}>
+								{message.profile.username}
+								<br />
+								{message.text}
+								<br />
+								{DateUtils.formattedDate(message.timestamp)}
+								</li>
+							)
+							
+						})
+					}
+				</ul>
+
 
 				{ 
 					(this.props.user == null) 
@@ -105,14 +136,16 @@ class Task extends Component {
 const mapStateToProps = (state) => {
 	return {
 		tasks: state.task,
-		user: state.account.user
+		user: state.account.user,
+		messages: state.messages
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		submitMessage: (params) => dispatch(actions.submitMessage(params)),
-		notify: (params) => dispatch(actions.notify(params))
+		notify: (params) => dispatch(actions.notify(params)),
+		fetchMessages: (params) => dispatch(actions.fetchMessages(params))
 	}
 }
 

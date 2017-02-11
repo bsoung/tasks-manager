@@ -15,6 +15,7 @@ class CreateTask extends Component {
 
 	updateTask(e) {
 		e.preventDefault();
+
 		let updated = Object.assign({}, this.state.task);
 		updated[e.target.id] = e.target.value;
 
@@ -25,6 +26,7 @@ class CreateTask extends Component {
 
 	submitTask(e) {
 		e.preventDefault();
+		
 		console.log(JSON.stringify(this.state.task));
 		this.props.onSubmitTask(this.state.task);
 	}
