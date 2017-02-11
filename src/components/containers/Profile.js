@@ -5,7 +5,8 @@ import actions from '../../actions';
 
 class Profile extends Component {
 	componentDidMount() {
-		
+		const id = this.props.params.id;
+		this.props.fetchProfile(id);
 	}
 
 	render() {
@@ -22,10 +23,17 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		message: state.message,
 		user: state.account.user
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchProfile: (id) => dispatch(actions.fetchProfile(id))
 	}
 }
 
 
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

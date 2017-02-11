@@ -3,6 +3,7 @@ import { connect} from 'react-redux';
 import actions from '../../actions';
 import { TextUtils, DateUtils } from '../../utils';
 import Time from 'react-time';
+import { Link } from 'react-router';
 
 class Task extends Component {
 	constructor() {
@@ -12,7 +13,6 @@ class Task extends Component {
 			message: {
 				text: ''
 			}
-		
 		};
 	}
 
@@ -53,7 +53,6 @@ class Task extends Component {
 				return this.props.notify(params);
 			})
 			.then(response => {
-				// alert('Thanks for replying!');
 				swal("Message Sent",`You have sent a text message to ${username}!`,"success");
 			})
 			.catch(err => {
@@ -75,7 +74,7 @@ class Task extends Component {
 	render() {
 		const taskId = this.props.params.id;
 		const task = this.props.tasks[taskId];
-		const messages = this.props.messages[taskId];
+		const messages = this.props.message[taskId];
 
 		return (
 
@@ -83,6 +82,7 @@ class Task extends Component {
 				<header className="major">
 					<h2 style={{border: 'none', marginBottom: 0}}>{ task.title }</h2>
 				</header>
+
 				<div className="posts">
 					<article style={{background: '#f9f9f9', border: '1px solid #ddd', padding: 16}}>
 						Category is <strong>{ TextUtils.capitalize(task.category) }</strong> 
@@ -97,24 +97,20 @@ class Task extends Component {
 				</div>
 
 				<h3>Replies</h3>
-				<ul>
-					{
-						messages == null ? '' :
-						messages.map(message => {
-							return (
-								<li key={message.id}>
-								{message.profile.username}
-								<br />
-								{message.text}
-								<br />
-								{DateUtils.formattedDate(message.timestamp)}
-								</li>
-							)
-							
-						})
-					}
-				</ul>
 
+				{
+					messages == null ? '' :
+					messages.map(message => {
+						return (
+							<li key={message.id}>
+							{message.text} by <Link to={'/profile/'+message.profile.id}>{message.profile.username}</Link>
+							<br />
+							{DateUtils.formattedDate(message.timestamp)}
+							</li>
+						)
+						
+					})
+				}
 
 				{ 
 					(this.props.user == null) 
@@ -137,7 +133,7 @@ const mapStateToProps = (state) => {
 	return {
 		tasks: state.task,
 		user: state.account.user,
-		messages: state.messages
+		message: state.message
 	}
 }
 

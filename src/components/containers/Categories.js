@@ -12,7 +12,6 @@ class Categories extends Component {
 
 	render() {
 		return (
-
 				<div className="inner">
 					<nav id="menu">
 						<header className="major">

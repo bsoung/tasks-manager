@@ -47,6 +47,13 @@ const postRequest = (path, params, actionType) => {
 }
 
 export default {
+
+	fetchProfile: (id) => {
+		return (dispatch) => {
+			return dispatch(getRequest('/api/profile/'+id, null, constants.PROFILE_RECEIVED));
+		}
+	},
+
 	registerAccount: (credentials) => {
 		return (dispatch) => {
 			return dispatch(postRequest('/account/register', credentials, constants.PROFILE_CREATED));
