@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import actions from '../../actions';
 
+
 class Categories extends Component {
 	onSelectCategory(category, e) {
 		e.preventDefault();
@@ -30,6 +31,7 @@ class Categories extends Component {
 								})
 							}
 						</ul>
+
 					</nav>
 
 				</div>

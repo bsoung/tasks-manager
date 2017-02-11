@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CreateTask, Authenticate } from '../view';
 import { connect} from 'react-redux';
 import actions from '../../actions';
+import { Link } from 'react-router';
 
 class Account extends Component {
 	componentDidMount() {
@@ -37,6 +38,7 @@ class Account extends Component {
 	}
 
 	render() {
+		console.log(this.props.user.id, "this is user id")
 		return (
 			<div style={{padding: 24}}>
 				<h2>Account</h2>
@@ -46,7 +48,10 @@ class Account extends Component {
 						onLogin={this.login.bind(this)} 
 						onRegister={this.register.bind(this)} 
 					/>
-					: <h2>Hello {this.props.user.username}</h2>
+					: <div>
+						<h2>Hello {this.props.user.username}</h2>
+						<Link to={"/profile/" + this.props.user.id}>Profile page</Link>
+					  </div>	
 				}
 				
 			</div>
