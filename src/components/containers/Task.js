@@ -19,6 +19,10 @@ class Task extends Component {
 	componentDidMount() {
 		const taskId = this.props.params.id;
 
+		if (this.props.message[taskId] != null) {
+			return;
+		}
+
 		this.props.fetchMessages({task: taskId});
 			
 	}

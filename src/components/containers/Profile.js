@@ -7,6 +7,10 @@ class Profile extends Component {
 	componentDidMount() {
 		const id = this.props.params.id;
 
+		if (this.props.profiles[id] != null) {
+			return;
+		}
+		
 		this.props.fetchProfile(id);
 	}
 
