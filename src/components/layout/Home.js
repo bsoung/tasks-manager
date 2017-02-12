@@ -19,7 +19,9 @@ export default (props) => {
 					</div>
 
 					{/* try to fix sidebar div id="sidebar" */}
-					<Categories />
+					<div id="sidebar">
+						<Categories />
+					</div>
 
 			</div>
 

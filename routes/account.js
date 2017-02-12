@@ -29,10 +29,10 @@ router.get('/:action', function(req, res, next) {
 		// verify token:
 		jwt.verify(req.session.token, process.env.TOKEN_SECRET, function(err, decoded) {
 			if (err) {
+
+				delete req.session.token;
+				// req.session.token.reset();
 				
-				if (process.env.NODE_ENV == 'production') {
-					req.session.token.reset();
-				}
 				
 				res.json({
 					confirmation: 'fail',
@@ -84,7 +84,6 @@ router.post('/:action', function(req, res, next) {
 			.post(req.body, false)
 			.then(function(result) {
 
-
 				var token = jwt.sign({id: result.id}, process.env.TOKEN_SECRET, {expiresIn: 4000});
 				req.session.token = token;
 
@@ -96,7 +95,6 @@ router.post('/:action', function(req, res, next) {
 			})
 
 			.catch(function(err) {
-				console.log("still error?")
 				res.json({
 					confirmation: 'fail',
 					message: err
