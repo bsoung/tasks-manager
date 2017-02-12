@@ -21,7 +21,6 @@ class Task extends Component {
 			return;
 		}
 
-		// this.props.fetchMessages({task: this.props.params.id});
 		this.updateMessages();
 	}
 
@@ -29,6 +28,12 @@ class Task extends Component {
 	updateMessages(seconds) {
 		this.props.fetchMessages({task: this.props.params.id})
 			.then(response => {
+
+				// wrong path, bail out;
+				if (this.props.router.location.pathname != '/task/'+this.props.params.id) {
+					return;
+				}
+
 				setTimeout(() => {
 					this.updateMessages();
 
@@ -37,7 +42,6 @@ class Task extends Component {
 			.catch(err => {
 				console.log(err);
 			});
-	
 	}
 
 	onSubmitMessage(e) {
@@ -114,14 +118,24 @@ class Task extends Component {
 				<h3>Replies</h3>
 
 				{
-					messages == null ? '' :
-					messages.map(message => {
+					messages == null 
+					? '' 
+					: messages.map(message => {
 						return (
-							<li key={message.id}>
-							{message.text} by <Link to={'/profile/'+message.profile.id}>{message.profile.username}</Link>
-							<br />
-							{DateUtils.formattedDate(message.timestamp)}
-							</li>
+
+							<div className="posts" key={message.id}>
+								<article style={{background: '#f9f9f9', border: '1px solid #ddd', padding: 16}}>
+									<br />
+									Posted by <strong><Link to={'/profile/'+message.profile.id}>{message.profile.username}</Link></strong> {DateUtils.formattedDate(task.timestamp)}
+									<br />
+								
+									<hr />
+									
+									<p>{message.text}</p>
+									<div>{DateUtils.formattedDate(message.timestamp)}</div>
+								</article>
+							</div>
+
 						)
 						
 					})

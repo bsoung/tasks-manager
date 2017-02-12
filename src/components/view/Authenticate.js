@@ -53,7 +53,7 @@ class Authenticate extends Component {
 
 	login(e) {
 		e.preventDefault();
-		
+
 		if (this.state.credentials.email.length == 0) {
 			swal("Oops...","You forgot the email!","error");
 			return;
@@ -67,6 +67,7 @@ class Authenticate extends Component {
 		this.props.onLogin(this.state.credentials);
 	}
 
+
 	render() {
 		return (
 			<div>
@@ -75,7 +76,7 @@ class Authenticate extends Component {
 				<input onChange={this.updateCredentials.bind(this, 'phone')} type="text" placeholder="Phone" /><br />
 				<input onChange={this.updateCredentials.bind(this, 'email')} type="text" placeholder="Email" /><br />
 				<input onChange={this.updateCredentials.bind(this, 'password')} type="text" placeholder="Password" /><br />
-				<button onClick={this.register.bind(this)}>Join</button>
+				<button style={{marginBottom: 24}} onClick={this.register.bind(this)}>Join</button>
 
 				<h3>Log In</h3>
 				<input onChange={this.updateCredentials.bind(this, 'email')} type="text" placeholder="Email" /><br />

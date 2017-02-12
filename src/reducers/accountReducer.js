@@ -19,6 +19,11 @@ export default (state = initialState, action) => {
 			updated['user'] = action.payload;
 			return updated;
 
+		case constants.USER_LOGGED_OUT:
+			
+			updated['user'] = null;
+			return updated;
+
 		default:
 			return state; 
 	}

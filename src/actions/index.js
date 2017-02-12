@@ -66,6 +66,12 @@ export default {
 		}
 	},
 
+	logoutAccount: () => {
+		return (dispatch) => {
+			return dispatch(getRequest('/account/logout', null, constants.USER_LOGGED_OUT));
+		}
+	},
+
 	checkCurrentUser: () => {
 		return (dispatch) => {
 			return dispatch(getRequest('/account/currentuser', {}, constants.USER_LOGGED_IN));

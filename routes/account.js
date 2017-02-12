@@ -29,8 +29,11 @@ router.get('/:action', function(req, res, next) {
 		// verify token:
 		jwt.verify(req.session.token, process.env.TOKEN_SECRET, function(err, decoded) {
 			if (err) {
-				// req.session.token.reset();
-
+				
+				if (process.env.NODE_ENV == 'production') {
+					req.session.token.reset();
+				}
+				
 				res.json({
 					confirmation: 'fail',
 					user: null
