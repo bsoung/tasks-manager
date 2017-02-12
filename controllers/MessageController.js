@@ -13,7 +13,7 @@ module.exports = {
 					return;
 				}
 
-				if (isRaw == true) {
+				if (isRaw) {
 					resolve(messages);
 
 				} else {
@@ -37,7 +37,12 @@ module.exports = {
 					return;
 				}
 
-				if (isRaw == true) {
+				if (message == null) {
+					reject(new Error(err));
+					return;
+				}
+
+				if (isRaw) {
 					resolve(message);
 
 				} else {
@@ -55,7 +60,7 @@ module.exports = {
 					return;
 				}
 				
-				if (isRaw == true) {
+				if (isRaw) {
 					resolve(message);
 					
 				} else {

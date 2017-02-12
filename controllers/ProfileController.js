@@ -9,7 +9,7 @@ module.exports = {
 					reject(err);
 					return;
 				}
-				if (isRaw == true) {
+				if (isRaw) {
 					resolve(profiles);
 					
 				} else {
@@ -37,8 +37,8 @@ module.exports = {
 					return;
 				}
 
-				if (isRaw == true) {
-					resolve(profiles);
+				if (isRaw) {
+					resolve(profile);
 				} else {
 					resolve(profile.summary());
 				}
@@ -60,7 +60,7 @@ module.exports = {
 				}
 
 
-				if (isRaw == true) {
+				if (isRaw) {
 					resolve(profile);
 				} else {
 					resolve(profile.summary());

@@ -13,7 +13,7 @@ module.exports = {
 					return;
 				}
 
-				if (isRaw == true) {
+				if (isRaw) {
 					resolve(tasks);
 				}
 
@@ -37,7 +37,12 @@ module.exports = {
 					return;
 				}
 
-				if (isRaw == true) {
+				if (task == null) {
+					reject(new Error(err));
+					return;
+				}
+
+				if (isRaw) {
 					resolve(task);
 				} else {
 					resolve(task.summary());
@@ -54,7 +59,7 @@ module.exports = {
 					return;
 				}
 				
-				if (isRaw == true) {
+				if (isRaw) {
 					resolve(task);
 				}
 

@@ -27,21 +27,21 @@ class Task extends Component {
 	// refreshing comments section
 	updateMessages(seconds) {
 		this.props.fetchMessages({task: this.props.params.id})
-			.then(response => {
+		.then(response => {
 
-				// wrong path, bail out;
-				if (this.props.router.location.pathname != '/task/'+this.props.params.id) {
-					return;
-				}
+			// wrong path, bail out;
+			if (this.props.router.location.pathname != '/task/'+this.props.params.id) {
+				return;
+			}
 
-				setTimeout(() => {
-					this.updateMessages();
+			setTimeout(() => {
+				this.updateMessages();
 
-				}, 3*1000)
-			})
-			.catch(err => {
-				console.log(err);
-			});
+			}, 3*1000)
+		})
+		.catch(err => {
+			console.log(err);
+		});
 	}
 
 	onSubmitMessage(e) {

@@ -12,12 +12,12 @@ class Account extends Component {
 		}
 
 		this.props.checkCurrentUser()
-			.then((response) => {
+		.then((response) => {
 
-			})
-			.catch(err => {
-				console.log(err.message);
-			})
+		})
+		.catch(err => {
+			console.log(err.message);
+		})
 		
 	}
 
@@ -38,25 +38,25 @@ class Account extends Component {
 		e.preventDefault();
 
 		this.props.logoutAccount()
-			.then(response => {
-				swal("Bye :(","You have successfully logged out!","success");
-			})
-			.catch(err => {
-				alert(err.message);
-			});
+		.then(response => {
+			swal("Bye :(","You have successfully logged out!","success");
+		})
+		.catch(err => {
+			alert(err.message);
+		});
 	}
 
 	register(credentials) {
 
 		this.props.register(credentials)
-			.then(response => {
-				swal("Congrats :)",
-				"You're registered! As a reminder, the Tasks Manager number is 917-382-5282. Please send all task requests to that number using this format: Name of task. Category of task. Description. Refer to the Tasks Manager button located in the user panel for more information."
-				,"success");
-			})
-			.catch(err => {
-				alert(err.message);
-			});
+		.then(response => {
+			swal("Congrats :)",
+			"You're registered! As a reminder, the Tasks Manager number is 917-382-5282. Please send all task requests to that number using this format: Name of task. Category of task. Description. Refer to the Tasks Manager button located in the user panel for more information."
+			,"success");
+		})
+		.catch(err => {
+			alert(err.message);
+		});
 	}
 
 	onClickNumberInfo(e) {

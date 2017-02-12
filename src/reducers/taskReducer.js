@@ -41,7 +41,7 @@ export default (state = initialState, action) => {
 			return updated;
 
 		case constants.CATEGORY_SELECTED:
-			updated['selectedCategory'] = action.payload;
+			updated.selectedCategory = action.payload;
 
 			return updated;
 

@@ -11,17 +11,17 @@ export default (state = initialState, action) => {
 	switch (action.type) {
 		case constants.PROFILE_CREATED:
 			
-			updated['user'] = action.payload;
+			updated.user = action.payload;
 			return updated;
 
 		case constants.USER_LOGGED_IN:
 
-			updated['user'] = action.payload;
+			updated.user = action.payload;
 			return updated;
 
 		case constants.USER_LOGGED_OUT:
 			
-			updated['user'] = null;
+			updated.user = null;
 			return updated;
 
 		default:

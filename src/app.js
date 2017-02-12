@@ -6,6 +6,7 @@ import store from './stores';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 const app = (
+	
 	<Provider store={ store.configureStore() }>
 		<Router history={browserHistory}>
 			<Route path="/" component={Home} />

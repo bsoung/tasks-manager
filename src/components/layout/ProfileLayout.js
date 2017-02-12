@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Profile, Account } from '../containers';
 
 export default (props) => {
