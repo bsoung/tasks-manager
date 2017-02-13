@@ -1,4 +1,5 @@
 import constants from '../constants';
+import _ from 'lodash';
 
 let initialState = {
 	selectedCategory: 'delivery',
@@ -7,40 +8,37 @@ let initialState = {
 		'delivery',
 		'dog walking',
 		'house cleaning'
-	]
+	],
+	tasks: {},
+	tasksOrder: []
 
 }
 
 export default (state = initialState, action) => {
-	let updated = Object.assign({}, state);
+	let updated = _.merge({}, state);
 
 	switch (action.type) {
-		case constants.TASKS_RECEIVED:
+		case constants.TASKS_SET:
 
-			const keys = Object.keys(action.params);
-			keys.forEach(key => {
-				const value = action.params[key];
-				updated[value] = action.payload;
-			});
+			updated.tasksOrder = [];
 
-			action.payload.forEach((task) => {
-				updated[task.id] = task
+			action.payload.forEach(task => {
+				updated.tasks[task.id] = task;
+				updated.tasksOrder.push(task.id);
 			});
 
 			return updated;
 
-		case constants.TASK_CREATED:
+		case constants.TASK_ADD:
 
-			let currentTasks = (updated[action.payload.category]) 
-								? Object.assign([], updated[action.payload.category]) 
-								: [];
+			updated.tasks[action.payload.id] = action.payload
 
-			currentTasks.unshift(action.payload);
-			updated[action.payload.category] = currentTasks;
+			updated.tasksOrder.unshift(action.payload.id);
 
 			return updated;
 
 		case constants.CATEGORY_SELECTED:
+
 			updated.selectedCategory = action.payload;
 
 			return updated;

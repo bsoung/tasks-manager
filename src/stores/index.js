@@ -7,7 +7,7 @@ let store;
 export default {
 	configureStore: () => {
 		const reducers = combineReducers({
-			task: taskReducer,
+			tasks: taskReducer,
 			account: accountReducer,
 			message: messageReducer,
 			profile: profileReducer

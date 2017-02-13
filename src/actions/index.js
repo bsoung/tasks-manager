@@ -1,7 +1,8 @@
 import constants from '../constants';
 import { APIManager } from '../utils';
+import _ from 'lodash';
 
-const getRequest = (path, params, actionType) => {
+const getRequest = (path, params, actionType, cb) => {
 	return (dispatch) => 
 		// returns a promise
 		APIManager
@@ -15,6 +16,10 @@ const getRequest = (path, params, actionType) => {
 				payload: payload,
 				params: params
 			});
+
+			if (_.isFunction(cb)) {
+				cb(payload);
+			}
 
 			return response;
 		})
@@ -46,12 +51,26 @@ const postRequest = (path, params, actionType) => {
 		});
 }
 
+function setProfileLoading(bool) {
+	return {
+		type: constants.PROFILE_LOADING_SET,
+		payload: bool
+	}
+}
+
 export default {
 
 	fetchProfile: (id) => {
 		return (dispatch) => {
-			return dispatch(getRequest('/api/profile/'+id, null, constants.PROFILE_RECEIVED));
+			dispatch(setProfileLoading(true));
+			return dispatch(
+				getRequest('/api/profile/'+id, null, constants.PROFILE_RECEIVED, () => {
+					dispatch(setProfileLoading(false));
+				})
+			)	
+
 		}
+
 	},
 
 	registerAccount: (credentials) => {
@@ -78,15 +97,15 @@ export default {
 		}
 	},
 
-	fetchTasks: (params) => {
+	fetchTasks: () => {
 		return (dispatch) => {
-			return dispatch(getRequest('/api/task', params, constants.TASKS_RECEIVED));
+			return dispatch(getRequest('/api/task', null, constants.TASKS_SET));
 		}
 	},
 
 	submitTask: (params) => {
 		return (dispatch) => {
-			return dispatch(postRequest('/api/task', params, constants.TASK_CREATED));
+			return dispatch(postRequest('/api/task', params, constants.TASK_ADD));
 		}
 	},
 
@@ -122,6 +141,7 @@ export default {
 			payload: category
 		}
 	}
+
 
 
 }

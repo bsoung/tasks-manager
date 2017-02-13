@@ -27,6 +27,7 @@
     "gulp-uglify": "^2.0.1",
     "hjs": "~0.0.6",
     "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.4",
     "mongoose": "^4.7.8",
     "morgan": "~1.7.0",
     "react": "^15.4.2",
@@ -40,5 +41,9 @@
     "superagent": "^3.3.2",
     "twilio": "^2.11.1",
     "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "babel-plugin-lodash": "^3.2.11",
+    "lodash-webpack-plugin": "^0.11.0"
   }
 }

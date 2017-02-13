@@ -14,8 +14,25 @@ class Profile extends Component {
 		this.props.fetchProfile(id);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.params.id != this.props.params.id && nextProps.params.id) {
+			this.props.fetchProfile(nextProps.params.id);
+		}
+	}
+
 	render() {
+		const { loading } = this.props;
 		const profile = this.props.profiles[this.props.params.id];
+
+		// console.log(profile, 'profile is');
+		// console.log(this.props.params.id, 'this is params id');
+		console.log(this.props.profiles, 'profiles are')
+
+		if (loading) {
+			return (
+				<div>Loading...</div>
+			)
+		}
 
 		return (profile == null) 
 			? <div>Not Found</div> 
@@ -48,7 +65,8 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		profiles: state.profile
+		profiles: state.profile,
+		loading: state.profile.loading
 	}
 }
 

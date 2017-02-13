@@ -7,6 +7,7 @@ class Categories extends Component {
 	onSelectCategory(category, e) {
 		e.preventDefault();
 
+		
 		this.props.selectCategory(category);
 	}
 
@@ -41,7 +42,7 @@ class Categories extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		tasks: state.task
+		tasks: state.tasks
 	}
 }
 

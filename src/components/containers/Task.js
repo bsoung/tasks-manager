@@ -17,8 +17,14 @@ class Task extends Component {
 	}
 
 	componentDidMount() {
-		if (this.props.message[this.props.params.id] != null) {
+		const taskId = this.props.params.id;
+
+		if (this.props.message[taskId] != null) {
 			return;
+		}
+
+		if (!this.props.task) {
+			this.props.fetchTasks();
 		}
 
 		this.updateMessages();
@@ -60,7 +66,7 @@ class Task extends Component {
 		updated['task'] = this.props.params.id;
 
 		const taskId = this.props.params.id;
-		const task = this.props.tasks[taskId];
+		const task = this.props.task;
 
 		this.props.submitMessage(updated)
 			.then(response => {
@@ -74,7 +80,7 @@ class Task extends Component {
 				return this.props.notify(params);
 			})
 			.then(response => {
-				swal("Message Sent",`You have sent a text message to ${username}!`,"success");
+				swal("Message Sent",`You have sent a text message!`,"success");
 			})
 			.catch(err => {
 				console.error(err, 'err');
@@ -92,8 +98,16 @@ class Task extends Component {
 
 	render() {
 		const taskId = this.props.params.id;
-		const task = this.props.tasks[taskId];
+		const task = this.props.task;
 		const messages = this.props.message[taskId];
+
+		if (!task) {
+			return (
+				<div>
+					Loading...
+				</div>
+			)
+		}
 
 		return (
 
@@ -158,9 +172,9 @@ class Task extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
 	return {
-		tasks: state.task,
+		task: state.tasks.tasks[props.params.id],
 		user: state.account.user,
 		message: state.message
 	}
@@ -170,7 +184,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		submitMessage: (params) => dispatch(actions.submitMessage(params)),
 		notify: (params) => dispatch(actions.notify(params)),
-		fetchMessages: (params) => dispatch(actions.fetchMessages(params))
+		fetchMessages: (params) => dispatch(actions.fetchMessages(params)),
+		fetchTasks: () => dispatch(actions.fetchTasks())
 	}
 }
 

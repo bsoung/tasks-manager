@@ -44,10 +44,10 @@ app.use(sessions({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 app.use('/api', api);
 app.use('/twilio', twilio);
 app.use('/account', account);
+app.use('/*', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
