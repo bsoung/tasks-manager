@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-// var LodashPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -12,7 +11,6 @@ module.exports = {
 	},
 	devtool: '#source-map',
 	plugins: process.env.NODE_ENV === 'production' ? [
-		// new LodashPlugin,
 		new webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify('production')
@@ -32,7 +30,6 @@ module.exports = {
 				exclude: /(node_modules!bower_components)/,
 				loader: 'babel-loader',
 				query: {
-					plugins: ['lodash'],
 					presets: ['react', 'es2015']
 				}
 			}
