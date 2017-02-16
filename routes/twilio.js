@@ -109,10 +109,8 @@ router.post('/task', function(req, res, next) {
         }
 
     } else {
-        var description = (parts.length < 3) ? '' : parts[2].trim();
+        var description = (parts.length < 3) ? 'No description was provided.' : parts[2].trim();
     }
-
-    console.log('WHAT IS DESCRIPTION TYPE?', typeof description);
 
     var task = {
         title: parts[0],
