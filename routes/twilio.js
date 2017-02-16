@@ -84,6 +84,7 @@ router.post('/notify', function(req, res, next) {
 
 router.post('/task', function(req, res, next) {
     var message = req.body['Body'];
+    var senderNumber = req.body['From'].replace('+1', ''); 
 
     // Title. Category. Task description.
     // Tell on the website: this is the format.
@@ -111,7 +112,16 @@ router.post('/task', function(req, res, next) {
         description: description
     }
 
-    var senderNumber = req.body['From'].replace('+1', ''); 
+    console.log(task, "------------------------------------------------------------THIS IS THE TASK");
+
+    
+    // if (validCategories.indexOf(task.category) == -1) {
+    //     var msg = 'Please format your request like this: "Title of request. Category. Description." The valid categories are dog walking, delivery, house cleaning, and misc.';
+
+    //     utils.TwilioManager.sendSMS(senderNumber, msg);
+
+    //     return;
+    // }
 
     controllers.profile
         .get({ phone: senderNumber }, false)

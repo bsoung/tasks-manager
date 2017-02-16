@@ -21,12 +21,8 @@ class Profile extends Component {
 	}
 
 	render() {
-		const { loading } = this.props;
-		const profile = this.props.profiles[this.props.params.id];
-
-		// console.log(profile, 'profile is');
-		// console.log(this.props.params.id, 'this is params id');
-		console.log(this.props.profiles, 'profiles are')
+		const { loading, profiles, params } = this.props;
+		const profile = profiles[params.id];
 
 		if (loading) {
 			return (

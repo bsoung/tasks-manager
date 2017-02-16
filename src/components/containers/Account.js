@@ -26,7 +26,7 @@ class Account extends Component {
 		this.props.login(credentials)
 		.then(response => {
 			swal("Hey there!",
-				"Welcome back. As a reminder, the Tasks Manager number is 917-382-5282. Please send all task requests to that number using this format: Name of task. Category of task. Description. Refer to the Tasks Manager button located in the user panel for more information."
+				"Welcome back. Refer to the Tasks Manager button located in the user panel for more information."
 				,"success");
 		})
 		.catch(err => {
@@ -51,7 +51,7 @@ class Account extends Component {
 		this.props.register(credentials)
 		.then(response => {
 			swal("Congrats :)",
-			"You're registered! As a reminder, the Tasks Manager number is 917-382-5282. Please send all task requests to that number using this format: Name of task. Category of task. Description. Refer to the Tasks Manager button located in the user panel for more information."
+			"You're registered! Refer to the Tasks Manager button located in the user panel for more information."
 			,"success");
 		})
 		.catch(err => {
@@ -64,7 +64,7 @@ class Account extends Component {
 
 		swal({
 		  title: "Important",
-		  text: "<div><strong>The Tasks Manager number is 917-382-5282</strong>.</div> <hr /> <div style='text-align: left'>Send all task requests to this number using the following format:</div> <div style='color: red'>Name of task. Category of task. Description of task.</div> <div style='text-align: left'>The category part of the text needs to be the following: 'delivery'\, 'dog walking'\, or 'house cleaning'</div> <div style='color: green'>Example: 'Walk the puppy. Dog Walking. Could someone walk my poodle?'</div> <hr /> <div style='text-align: left'>You should receive a text confirmation after sending the task. Your task will also appear in the appropriate section on this website. If your category does not fit the required categories, it will appear under the 'misc' section. You will also be notified via text if any users respond to your task.</div>",
+		  text: "<div><strong>The Tasks Manager number is 917-382-5282</strong>.</div> <hr /> <div style='text-align: left'>Send all requests to number with the following format:</div> <div style='color: red'>Name of task. Category of task. Description of task.</div> <div style='text-align: left'>The category part of the text needs to be the following: 'delivery'\, 'dog walking'\, or 'house cleaning'</div> <div style='color: green'>Example: 'Walk the puppy. Dog Walking. Could someone walk my poodle?'</div> <hr /> <div style='text-align: left'>",
 		  html: true
 		});
 
