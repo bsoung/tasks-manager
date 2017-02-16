@@ -112,11 +112,7 @@ router.post('/task', function(req, res, next) {
         var description = (parts.length < 3) ? '' : parts[2].trim();
     }
 
-    if (description == null) {
-        description = 'No description provided.';
-    }
-
-    console.log("=================description is" + description + "++++++++++++++++++++++++")
+    console.log('WHAT IS DESCRIPTION TYPE?', typeof description);
 
     var task = {
         title: parts[0],
