@@ -16,7 +16,7 @@ class Categories extends Component {
 				<div className="inner">
 					<nav id="menu">
 						<header className="major">
-							<h2 style={{width: 80+'%'}}>Categories</h2>
+							<h3 style={{width: 80+'%'}}>Categories</h3>
 						</header>
 						<ul>
 							{

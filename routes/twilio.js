@@ -99,8 +99,14 @@ router.post('/task', function(req, res, next) {
     // check if category word is valid
     if (validCategories.indexOf(category) == -1) {
         category = 'misc';
-        var theRest = parts.splice(1);
-        description = theRest.trim();
+        
+        if (parts.length > 1) {
+            var newPart = parts.slice(1, parts.length);
+            description = newPart.join('.').trim();
+
+        } else if (parts.length == 1) {
+            description = 'no description';
+        }
 
     } else {
         var description = (parts.length < 3) ? '' : parts[2].trim();
@@ -111,17 +117,6 @@ router.post('/task', function(req, res, next) {
         category: category,
         description: description
     }
-
-    console.log(task, "------------------------------------------------------------THIS IS THE TASK");
-
-    
-    // if (validCategories.indexOf(task.category) == -1) {
-    //     var msg = 'Please format your request like this: "Title of request. Category. Description." The valid categories are dog walking, delivery, house cleaning, and misc.';
-
-    //     utils.TwilioManager.sendSMS(senderNumber, msg);
-
-    //     return;
-    // }
 
     controllers.profile
         .get({ phone: senderNumber }, false)

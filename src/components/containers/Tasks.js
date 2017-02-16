@@ -155,7 +155,7 @@ class Tasks extends Component {
 
 							<button style={{display: 'flex', marginBottom: 24}} onClick={this.onLogout.bind(this)}>Logout</button>
 
-							<button onClick={this.onClickNumberInfo.bind(this)}>Tasks Manager Number</button>
+							<button style={{marginBottom: 24}} onClick={this.onClickNumberInfo.bind(this)}>Tasks Manager Number</button>
 						  </div>	
 					}
 		
