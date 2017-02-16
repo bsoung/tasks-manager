@@ -57,6 +57,7 @@ class Task extends Component {
 
 		const user = this.props.user;
 		const username = user.username || 'a user';
+		const userId = user.id;
 
 		updated['profile'] = {
 			id: user.id,
@@ -74,7 +75,8 @@ class Task extends Component {
 				const params = {
 					recipient: task.profile.id,
 					text: updated.text,
-					username
+					username,
+					userId
 				}
 
 				return this.props.notify(params);

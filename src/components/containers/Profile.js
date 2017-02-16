@@ -42,10 +42,10 @@ class Profile extends Component {
 					</strong>
 					<br />
 					<p>
-					In order to post tasks, you must send a correctly formatted text
-					message to the Tasks Manager Number. You can find the number on the right side of the screen
-					after you have logged in. Once your task has been posted, other users can see your requests, and 
-					decide if they want to respond. You will receive a text notification if any users respond to your task.
+					Thanks for checking out Tasks Manager! This is a project exploring the awesomeness of the Twilio API with React and Redux.
+					The basic concept is to have a "task board" where users post tasks they want via text messaging. Other users can reply
+					to these tasks. Once a user replies, the original task poster will receive a text message update. This would be a pretty cool 
+					tool for a group of friends, roommates, or family members.
 					</p>
 					<h3>Email</h3>
 					<ul className="contact">

@@ -32,6 +32,9 @@ router.get('/notify', function(req, res, next) {
 
 router.post('/notify', function(req, res, next) {
     var username = req.body.username || 'Somebody';
+    var userId = req.body.userId;
+
+    console.log(req.body, "WHAT IS THE REQ BODY")
 
     if (req.body.recipient == null) {
         res.json({
@@ -62,7 +65,7 @@ router.post('/notify', function(req, res, next) {
                 + '\n\n'
                 + 'View ' 
                 + username 
-                + '\'s profile here: https://tasks-manager-bs.herokuapp.com/';
+                + `\'s profile here: https://tasks-manager-bs.herokuapp.com/profile/${userId}`;
 
             return utils.TwilioManager.sendSMS(profile.phone, msg);
         })
@@ -99,18 +102,21 @@ router.post('/task', function(req, res, next) {
     // check if category word is valid
     if (validCategories.indexOf(category) == -1) {
         category = 'misc';
-        
+
         if (parts.length > 1) {
             var newPart = parts.slice(1, parts.length);
-            description = newPart.join('.').trim();
-
-        } else if (parts.length == 1) {
-            description = 'no description';
+            description = newPart.join('.').trim(); 
         }
 
     } else {
         var description = (parts.length < 3) ? '' : parts[2].trim();
     }
+
+    if (description == null) {
+        description = 'No description provided.';
+    }
+
+    console.log("=================description is" + description + "++++++++++++++++++++++++")
 
     var task = {
         title: parts[0],

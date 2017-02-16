@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Authenticate } from '../view';
 import { connect} from 'react-redux';
 import actions from '../../actions';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { DateUtils } from '../../utils';
 import _ from 'lodash';
 
@@ -47,7 +47,8 @@ class Tasks extends Component {
 			.then(result => {
 			})
 			.catch(err => {
-				alert(err);
+				sweetAlert("Oops...", `${err.message}`, "error");
+				console.error(err);
 			})
 		
 	}
@@ -57,11 +58,12 @@ class Tasks extends Component {
 		this.props.login(credentials)
 		.then(response => {
 			swal("Hey there!",
-				"Welcome back. Refer to the Tasks Manager button located in the user panel for more information."
+				"Welcome back. Refer to the Help button located in the user panel for more information."
 				,"success");
 		})
 		.catch(err => {
-			alert(err.message);	
+			sweetAlert("Oops...", `${err.message}`, "error");
+			console.error(err.message);	
 		});
 	}
 
@@ -73,7 +75,8 @@ class Tasks extends Component {
 				swal("Bye :(","You have successfully logged out!","success");
 			})
 			.catch(err => {
-				alert(err.message);
+				sweetAlert("Oops...", `${err.message}`, "error");
+				console.error(err.message);
 			});
 	}
 
@@ -82,11 +85,12 @@ class Tasks extends Component {
 		this.props.register(credentials)
 			.then(response => {
 				swal("Congrats :)",
-				"You're registered! Refer to the Tasks Manager button located in the user panel for more information."
+				"You're registered! Refer to the Help button located in the user panel for more information."
 				,"success");
 			})
 			.catch(err => {
-				alert(err.message);
+				sweetAlert("Oops...", `${err.message}`, "error");
+				console.error(err.message);
 			});
 	}
 
@@ -155,7 +159,7 @@ class Tasks extends Component {
 
 							<button style={{display: 'flex', marginBottom: 24}} onClick={this.onLogout.bind(this)}>Logout</button>
 
-							<button style={{marginBottom: 24}} onClick={this.onClickNumberInfo.bind(this)}>Tasks Manager Number</button>
+							<button style={{marginBottom: 24}} onClick={this.onClickNumberInfo.bind(this)}>Help</button>
 						  </div>	
 					}
 		

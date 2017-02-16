@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { CreateTask, Authenticate } from '../view';
 import { connect} from 'react-redux';
 import actions from '../../actions';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class Account extends Component {
 	componentDidMount() {
@@ -26,11 +26,12 @@ class Account extends Component {
 		this.props.login(credentials)
 		.then(response => {
 			swal("Hey there!",
-				"Welcome back. Refer to the Tasks Manager button located in the user panel for more information."
+				"Welcome back. Refer to the Help button located in the user panel for more information."
 				,"success");
 		})
 		.catch(err => {
-			alert(err.message);	
+			sweetAlert("Oops...", `${err.message}`, "error");
+			console.error(err.message);	
 		});
 	}
 
@@ -42,7 +43,8 @@ class Account extends Component {
 			swal("Bye :(","You have successfully logged out!","success");
 		})
 		.catch(err => {
-			alert(err.message);
+			sweetAlert("Oops...", `${err.message}`, "error");
+			console.error(err.message);
 		});
 	}
 
@@ -51,11 +53,12 @@ class Account extends Component {
 		this.props.register(credentials)
 		.then(response => {
 			swal("Congrats :)",
-			"You're registered! Refer to the Tasks Manager button located in the user panel for more information."
+			"You're registered! Refer to the Help button located in the user panel for more information."
 			,"success");
 		})
 		.catch(err => {
-			alert(err.message);
+			sweetAlert("Oops...", `${err.message}`, "error");
+			console.error(err.message);
 		});
 	}
 
@@ -68,6 +71,12 @@ class Account extends Component {
 		  html: true
 		});
 
+	}
+
+	onClickToTasks(e) {
+		e.preventDefault();
+
+		browserHistory.push('/');
 	}
 
 	render() {
@@ -83,12 +92,16 @@ class Account extends Component {
 						<h2>Hello {this.props.user.username}</h2>
 
 						<button style={{marginBottom: 24}}>
-							<Link style={{textDecoration: 'none'}} to={"/profile/" + this.props.user.id}>Profile page</Link>
+							<Link style={{textDecoration: 'none'}} to={"/profile/" + this.props.user.id}>Profile</Link>
+						</button>
+
+						<button onClick={this.onClickToTasks.bind(this)} style={{marginBottom: 24}}>
+							Tasks
 						</button>
 
 						<button style={{display: 'flex', marginBottom: 24}} onClick={this.onLogout.bind(this)}>Logout</button>
 
-						<button onClick={this.onClickNumberInfo.bind(this)}>Tasks Manager Number</button>
+						<button onClick={this.onClickNumberInfo.bind(this)}>Help</button>
 					  </div>	
 				}
 				
