@@ -22,7 +22,8 @@ This is a personal message board for friends, family, and roommates to help orga
 
 ## Wireframe
 
-![memories](http://i.imgur.com/O6FBSXH.png "Memories interface")
+![breakr](http://i.imgur.com/srUi9GW.png "Breakr interface")
+![breakr](http://i.imgur.com/nE9M3Si.png "Breakr interface")
 
 ## API Reference
 
