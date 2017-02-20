@@ -49,17 +49,3 @@ This is a personal message board for friends, family, and roommates to help orga
 * bsoung
 
 
-##### Directory layout
-
-```
-.
-├── client      Client-side code
-│   ├── assets  Timer Sound
-│   ├── js      JavaScript
-│   └── scss    SASS stylesheets
-├── server      Server-side code
-└── test        Tests
-    ├── client  Client tests
-    └── server  Server tests
-```
-
