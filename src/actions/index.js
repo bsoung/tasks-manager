@@ -8,7 +8,6 @@ const getRequest = (path, params, actionType, cb) => {
 		APIManager
 		.get(path, params)
 		.then(response => {
-			// console.log("GET response", JSON.stringify(response));
 			const payload = response.results || response.result || response.user;
 
 			dispatch({
@@ -31,11 +30,9 @@ const getRequest = (path, params, actionType, cb) => {
 
 const postRequest = (path, params, actionType) => {
 	return (dispatch) => 
-		// returns a promise
 		APIManager
 		.post(path, params)
 		.then(response => {
-			// 	console.log("POST response", JSON.stringify(response));
 			const payload = response.results || response.result || response.user;
 			
 			dispatch({
