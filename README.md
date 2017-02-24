@@ -2,7 +2,8 @@
 
 This is a personal message board for friends, family, and roommates to help organize repeatable tasks and manage different requests. It puts a fun spin on a traditional group chat or whiteboard calendar, and integrates nicely with the mobile life!
 
-tasks-manager-bs.herokuapp.com
+[Try it here!](tasks-manager-bs.herokuapp.com)
+
 
 ## Motivation
 
