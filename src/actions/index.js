@@ -56,7 +56,6 @@ function setProfileLoading(bool) {
 }
 
 export default {
-
 	fetchProfile: (id) => {
 		return (dispatch) => {
 			dispatch(setProfileLoading(true));
