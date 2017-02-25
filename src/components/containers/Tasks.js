@@ -54,7 +54,6 @@ class Tasks extends Component {
 	}
 
 	login(credentials) {
-		
 		this.props.login(credentials)
 		.then(response => {
 			swal("Hey there!",
@@ -81,7 +80,6 @@ class Tasks extends Component {
 	}
 
 	register(credentials) {
-
 		this.props.register(credentials)
 			.then(response => {
 				swal("Congrats :)",
@@ -106,7 +104,6 @@ class Tasks extends Component {
 	}
 
 	render() {
-
 		const taskList = this.props.tasks;
 
 		return (		
