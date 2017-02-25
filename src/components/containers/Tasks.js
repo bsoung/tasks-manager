@@ -55,15 +55,15 @@ class Tasks extends Component {
 
 	login(credentials) {
 		this.props.login(credentials)
-		.then(response => {
-			swal("Hey there!",
-				"Welcome back. Refer to the Help button located in the user panel for more information."
-				,"success");
-		})
-		.catch(err => {
-			sweetAlert("Oops...", `${err.message}`, "error");
-			console.error(err.message);	
-		});
+			.then(response => {
+				swal("Hey there!",
+					"Welcome back. Refer to the Help button located in the user panel for more information."
+					,"success");
+			})
+			.catch(err => {
+				sweetAlert("Oops...", `${err.message}`, "error");
+				console.error(err.message);	
+			});
 	}
 
 	onLogout(e) {
