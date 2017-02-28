@@ -4,7 +4,7 @@ This is a personal message board for friends, family, and roommates to help orga
 
 [Try it here!](https://tasks-manager-bs.herokuapp.com)
 
-Sometimes Heroku has a hiccup and it may affect this app. Check the their status if something is wrong by going here: https://status.heroku.com/
+Sometimes Heroku has a hiccup and it may affect this app. Check their status if something is wrong by going here: https://status.heroku.com/
 
 
 ## Motivation
