@@ -25,6 +25,23 @@ class Authenticate extends Component {
 		});
 	}
 
+	isPhoneNumberValid(numbers) {
+		const correctLength = 10;
+		const validNumbers = '1234567890'.split('');
+
+		if (numbers.length !== correctLength) {
+			return false;
+		}
+
+		for (let i = 0; i < numbers.length; i++) {
+			if (validNumbers.indexOf(numbers[i]) == -1) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	register(e) {
 		e.preventDefault();
 
@@ -47,6 +64,14 @@ class Authenticate extends Component {
 			swal("Oops...","You forgot the password!","error");
 			return;
 		}
+
+		const phoneNumber = this.state.credentials.phone;
+		const correctNumber = this.isPhoneNumberValid(phoneNumber);
+
+		if (!correctNumber) {
+			swal("Oops...","You must enter a valid phone number!","error");
+			return;
+		} 
 
 		this.props.onRegister(this.state.credentials);
 	}
